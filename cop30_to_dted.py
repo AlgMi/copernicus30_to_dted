@@ -7,7 +7,7 @@ from botocore import UNSIGNED
 from botocore.config import Config
 
 def get_dted_level2_width(lat):
-    """Returns mandatory DTED Level 2 width based on MIL-PRF-89020B"""
+    #Returns mandatory DTED Level 2 width based on MIL-PRF-89020B
     abs_lat = abs(lat)
     if abs_lat < 50: return 3601
     elif abs_lat < 70: return 1801
