@@ -1,0 +1,8 @@
+temp_*.tif
+Copernicus_DSM_COG_*.tif
+DTED*/
+*.dt2
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
