@@ -59,9 +59,9 @@ def process_to_dted(tif_file, lat, lon, output_base):
             tif_file, temp_stage1
         ], check=True)
 
-        subprocess.run(['gdal_fillnodata.py', '-q', '-md', '2', temp_stage1, temp_stage2], check=True)
+        subprocess.run(['gdal_fillnodata.py', '--config', 'GDAL_PAM_ENABLED', 'NO', '-q', '-md', '2', temp_stage1, temp_stage2], check=True)
 
-        subprocess.run(['gdal_translate', '-of', 'DTED', '-q', '-co', 'LEVEL=2', temp_stage2, final_path], check=True)
+        subprocess.run(['gdal_translate', '--config', 'GDAL_PAM_ENABLED', 'NO', '-of', 'DTED', '-q', '-co', 'LEVEL=2', temp_stage2, final_path], check=True)
         return True
     except Exception as e:
         print(f"[ERROR] Error processing {tif_file}: {e}")
@@ -79,7 +79,7 @@ def main():
     
     # Longitude Arguments
     parser.add_argument("--lon_min", type=int, default=20, help="Minimum Longitude (inclusive)")
-    parser.add_argument("--lon_max", type=int, default=27, help="Maximum Longitude (exclusive)")
+    parser.add_argument("--lon_max", type=int, default=28, help="Maximum Longitude (exclusive)")
     
     # Output Directory
     parser.add_argument("--output", type=str, default="./DTED_Lithuania", help="Base output directory")
